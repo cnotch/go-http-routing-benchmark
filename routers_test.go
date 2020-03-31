@@ -14,6 +14,7 @@ var (
 	}{
 		{"Ace", loadAce},
 		{"Aero", loadAero},
+		{"ApiRouter", loadApiRouter},
 		{"Bear", loadBear},
 		{"Beego", loadBeego},
 		{"Bone", loadBone},

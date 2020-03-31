@@ -174,6 +174,7 @@ var (
 
 	staticAce             http.Handler
 	staticAero            http.Handler
+	staticApiRouter       http.Handler
 	staticBear            http.Handler
 	staticBeego           http.Handler
 	staticBone            http.Handler
@@ -223,6 +224,9 @@ func init() {
 	})
 	calcMem("Aero", func() {
 		staticAero = loadAero(staticRoutes)
+	})
+	calcMem("ApiRouter", func() {
+		staticApiRouter = loadApiRouter(staticRoutes)
 	})
 	calcMem("Bear", func() {
 		staticBear = loadBear(staticRoutes)
@@ -328,6 +332,9 @@ func BenchmarkAce_StaticAll(b *testing.B) {
 }
 func BenchmarkAero_StaticAll(b *testing.B) {
 	benchRoutes(b, staticAero, staticRoutes)
+}
+func BenchmarkApiRouter_StaticAll(b *testing.B) {
+	benchRoutes(b, staticApiRouter, staticRoutes)
 }
 func BenchmarkHttpServeMux_StaticAll(b *testing.B) {
 	benchRoutes(b, staticHttpServeMux, staticRoutes)

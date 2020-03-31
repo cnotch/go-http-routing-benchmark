@@ -51,6 +51,9 @@ import (
 
 	// "github.com/revel/pathtree"
 	// "github.com/revel/revel"
+
+	"github.com/cnotch/apirouter"
+
 	"github.com/aerogo/aero"
 	"github.com/typepress/rivet"
 	"github.com/ursiform/bear"
@@ -196,6 +199,34 @@ func loadAeroSingle(method, path string, h aero.Handler) http.Handler {
 	}
 	// }
 	return app
+}
+
+// ApiRouter
+func apirouterHandler(_ http.ResponseWriter, _ *http.Request, ps apirouter.Params) {
+	return
+}
+func apirouterHandlerWrite(w http.ResponseWriter, r *http.Request, ps apirouter.Params) {
+	io.WriteString(w, ps.ByName("name"))
+}
+func apirouterHandlerTest(w http.ResponseWriter, r *http.Request, ps apirouter.Params) {
+	io.WriteString(w, r.URL.Path)
+}
+
+func loadApiRouter(routes []route) http.Handler {
+	h := apirouterHandler
+	if loadTestHandler {
+		h = apirouterHandlerTest
+	}
+	options := make([]apirouter.Option, len(routes))
+	for i, route := range routes {
+		options[i] = apirouter.Handle(route.method, route.path, h)
+	}
+
+	return apirouter.New(options...)
+}
+
+func loadApiRouterSingle(method, path string, h func(http.ResponseWriter, *http.Request, apirouter.Params)) http.Handler {
+	return apirouter.New(apirouter.Handle(method, path, h))
 }
 
 // bear
