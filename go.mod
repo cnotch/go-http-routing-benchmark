@@ -8,7 +8,7 @@ require (
 	github.com/astaxie/beego v1.12.0
 	github.com/bmizerany/pat v0.0.0-20170815010413-6226ea591a40
 	github.com/cloudykit/router v0.0.0-20170501012743-15c4ed71df81
-	github.com/cnotch/apirouter v0.0.0-20200331072244-83861f8405ca
+	github.com/cnotch/apirouter v0.0.0-20200402080855-5c6e3057106a
 	github.com/codegangsta/inject v0.0.0-20150114235600-33e0aa1cb7c0 // indirect
 	github.com/dimfeld/httptreemux v5.0.1+incompatible
 	github.com/emicklei/go-restful v2.10.0+incompatible

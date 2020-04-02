@@ -219,14 +219,14 @@ func loadApiRouter(routes []route) http.Handler {
 	}
 	options := make([]apirouter.Option, len(routes))
 	for i, route := range routes {
-		options[i] = apirouter.Handle(route.method, route.path, h)
+		options[i] = apirouter.API(route.method, route.path, h)
 	}
 
 	return apirouter.New(options...)
 }
 
 func loadApiRouterSingle(method, path string, h func(http.ResponseWriter, *http.Request, apirouter.Params)) http.Handler {
-	return apirouter.New(apirouter.Handle(method, path, h))
+	return apirouter.New(apirouter.API(method, path, h))
 }
 
 // bear
